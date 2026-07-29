@@ -1,0 +1,85 @@
+"use client";
+
+/**
+ * Features background — metallic aurora + star points with lightning flashes.
+ */
+const STARS = [
+  { top: "12%", left: "8%", delay: "0s", size: "sm" },
+  { top: "18%", left: "22%", delay: "1.2s", size: "md" },
+  { top: "10%", left: "48%", delay: "2.4s", size: "sm" },
+  { top: "16%", left: "72%", delay: "0.6s", size: "lg" },
+  { top: "14%", left: "88%", delay: "3.1s", size: "sm" },
+  { top: "32%", left: "14%", delay: "1.8s", size: "md" },
+  { top: "38%", left: "36%", delay: "4.2s", size: "sm" },
+  { top: "28%", left: "58%", delay: "0.9s", size: "md" },
+  { top: "35%", left: "82%", delay: "2.7s", size: "sm" },
+  { top: "48%", left: "6%", delay: "3.6s", size: "sm" },
+  { top: "52%", left: "28%", delay: "1.5s", size: "lg" },
+  { top: "45%", left: "50%", delay: "0.3s", size: "sm" },
+  { top: "55%", left: "68%", delay: "2.1s", size: "md" },
+  { top: "50%", left: "90%", delay: "4.5s", size: "sm" },
+  { top: "68%", left: "12%", delay: "2.9s", size: "md" },
+  { top: "72%", left: "40%", delay: "1.1s", size: "sm" },
+  { top: "65%", left: "62%", delay: "3.8s", size: "lg" },
+  { top: "70%", left: "85%", delay: "0.4s", size: "sm" },
+  { top: "82%", left: "20%", delay: "2.0s", size: "sm" },
+  { top: "86%", left: "46%", delay: "3.3s", size: "md" },
+  { top: "80%", left: "74%", delay: "1.7s", size: "sm" },
+  { top: "88%", left: "92%", delay: "4.0s", size: "sm" },
+  { top: "24%", left: "42%", delay: "2.5s", size: "sm" },
+  { top: "60%", left: "18%", delay: "0.8s", size: "md" },
+  { top: "42%", left: "78%", delay: "3.5s", size: "sm" },
+] as const;
+
+export default function FeaturesBackground() {
+  return (
+    <div
+      className="absolute inset-0 overflow-hidden pointer-events-none"
+      aria-hidden="true"
+    >
+      {/* Base metallic haze */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 75% 55% at 50% 50%, rgba(74,99,80,0.16) 0%, rgba(143,170,146,0.08) 40%, transparent 70%)",
+        }}
+      />
+
+      {/* Slow rotating aurora wash */}
+      <div className="features-bg-aurora absolute left-1/2 top-1/2 w-[140%] h-[140%]" />
+
+      {/* Drifting orbs */}
+      <div className="features-bg-orb features-bg-orb--a absolute w-[420px] h-[420px] rounded-full" />
+      <div className="features-bg-orb features-bg-orb--b absolute w-[320px] h-[320px] rounded-full" />
+      <div className="features-bg-orb features-bg-orb--c absolute w-[280px] h-[280px] rounded-full" />
+
+      {/* Sparse base twinkle field */}
+      <div className="features-bg-dots absolute inset-0" />
+
+      {/* Star points with lightning flashes */}
+      <div className="features-bg-stars absolute inset-0">
+        {STARS.map((star, i) => (
+          <span
+            key={i}
+            className={`features-bg-star features-bg-star--${star.size}`}
+            style={{
+              top: star.top,
+              left: star.left,
+              animationDelay: star.delay,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Pure black top & bottom */}
+      <div
+        className="absolute inset-0 z-[1]"
+        style={{
+          background:
+            "linear-gradient(180deg, #000000 0%, #000000 8%, transparent 24%, transparent 76%, #000000 92%, #000000 100%)",
+        }}
+      />
+    </div>
+  );
+}
